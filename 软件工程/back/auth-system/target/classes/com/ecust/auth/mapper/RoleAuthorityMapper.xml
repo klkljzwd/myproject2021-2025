@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ecust.auth.mapper.RoleAuthorityMapper">
+    <select id="getRoleAuthority" resultType="long">
+        select auth_id
+        from library.role_authority
+        where role_id in
+        <if test="ids != null and ids.size() > 0">
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+</mapper>
